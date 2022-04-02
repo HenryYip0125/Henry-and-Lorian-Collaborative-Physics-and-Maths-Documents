@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[thinc]{esdiff}
+
+\title{Solving Linear Second Order ODEs}
+
+\author{
+    Yip, Henry\\
+    s2231321@ed.ac.uk
+    \and
+    Richmond, Lorian\\
+    s2188785@ed.ac.uk
+}
+
+\date{March 2022}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+    This paper includes
+    \begin{itemize}
+     \item Several proofs behind choosing the Ansatz: $y=e^{\lambda x}$
+     \item Generalizing solutions for Linear Second Order ODEs using Linear Algebra
+     \item Physical applications in Quantum Mechanics and Classical Mechanics
+     \end{itemize}
+\end{abstract}
+\section{Introduction}
+
+Consider the homogeneous equation:
+\begin{equation}
+\ddot{y}+ \alpha\dot{y}+ \beta y = 0
+\end{equation}
+By basic differentiation techniques, we have 
+ \begin{align}
+ \frac{d}{dx}(e^x)=e^x\\
+ \implies \frac{d}{dx}(ae^x)=ae^x
+ \end{align}
+ 
+ Suppose that f: $\mathbb{R} \rightarrow \mathbb{R}$ is differentiable everywhere and $f'(x)=af(x)$.
+ There are no other functions in which the derivative is equal to itself. 
+ \subsection{Proof 1}
+
+ If we let $g(x)=\frac{af(x)}{e^{ax}}$
+
+
+$ f(x)$ and $e^{ax}$ are differentiable $\rightarrow g'(x)$ is defined.
+\begin{align}
+     g'(x)&=\frac{f'(x)e^{ax}-af(x)e^{ax}}{(e^{ax})^2}\\
+     g'(x)&=\frac{af(x)e^{ax}-af(x)e^{ax}}{(e^{ax})^2}\\
+     g'(x)&=0
+\end{align}
+ By identity theorem, $g'(x)=0\rightarrow g(x)= c$, where $c\in \mathbb{R}$\\
+ \implies $f(x)=Ae^{ax}$, where $A=ac$. We take $a=1$ and hence $A=c$.
+ The above statement can be proved by Picard–Lindelöf theorem, however we won't cover it here.
+ \subsection{Proof 2}
+ Suppose that f: $\mathbb{R} \rightarrow \mathbb{R}$ is differentiable everywhere and $f(x)=f'(x)$
+ \begin{align}
+     1&=\frac{f(x)}{f'(x)}\\
+     x+c&=\int{\frac{f(x)}{f'(x)}}, c\in \mathbb{R}\\
+     x+c&=ln(f(x))\\
+     f(x)&=e^{x+c}\\
+     f(x)&=\gamma e^x, \gamma =e^c
+ \end{align}
+ \subsection{Ansatz}
+ Therefore, we take the Ansatz: $y=e^{\lambda x}$ and obtain:
+ \begin{align}
+  \ddot{y}+ \alpha\dot{y}+ \beta y &= 0\\
+     ({\lambda}^2 + \alpha\lambda  + \beta)(e^{\lambda x}) &=0
+\end{align}
+     Obviously $e^{\lambda x}=0$ is undefined, so 
+     \begin{equation}
+     {\lambda}^2 + \alpha\lambda  + \beta=0
+     \end{equation}
+     \begin{equation}
+     \lambda_1=\frac{a}{2}+\sqrt{\frac{a^2}{4}-b} 
+     \end{equation}
+     \begin{equation}
+     \lambda_2=\frac{a}{2}-\sqrt{\frac{a^2}{4}-b}
+     \end{equation}
+     
+     We can imagine both $\lambda_1$ and $\lambda_2$ satisfies the equation, so $y$ is a linear combination of $e^{\lambda_1 x}$ and $e^{\lambda_2 x}$, we can rewrite this as:
+     \begin{equation}
+         y=Ae^{\lambda_1 x}+Be^{\lambda_1 x}
+     \end{equation}
+     Where A \& B $\in \mathbb{R}$
+     
+     \bf{A Rigorous Statement:}
+     Let S be the solution space of 
+     $$\ddot{y}+ \alpha\dot{y}+ \beta y &= 0$$
+     If $\lambda_1 \ne \lambda_2$, then $\{e^{\lambda_1 x} , e^{\lambda_2 x}\}$ is a basis for S.
+     
+     Note that the above is only true for $\lambda_1 \ne \lambda_2$. For $\lambda_1 = \lambda_2$,$\{e^{\lambda_1 x} , te^{\lambda_1 x}\}$ is a basis for S. The proof will be written some other time.
+ \end{document}
+

@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[thinc]{esdiff}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\title{Trigonometric Rollercoaster - Dynamics Problem}
+
+\author{
+    Yip, Henry\\
+    s2231321@ed.ac.uk
+    \and
+    Richmond, Lorian\\
+    s2188785@ed.ac.uk
+}
+
+\date{March 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{The Problem}
+
+A carriage of mass $m$ is at rest at the start of a section of track which can be described by the equation $y=cos(x)$. If friction is negligible, find $x$ as a function of time after the carriage is given a small push.
+
+\begin{center}
+	\label{problem_diagram}
+	\begin{tikzpicture}
+	    \draw plot[domain=0:9.4248] (\x,{cos(\x*2/3 r)});
+	    \filldraw[color=black, fill=lightgray] (-0.2,1) rectangle ++(0.8,0.4);
+	\end{tikzpicture}
+\end{center}
+
+\section{The Solution}
+
+\subsection{Approach 1 - conservation of energy}
+
+This problem can be solved using conservation of energy. As friction is negligible, we know that any potential energy lost by the carriage must result in the same amount of kinetic energy being gained.
+
+First, we find $U(x)$, the gravitational potential energy of the carriage as a function of $x$.
+
+\begin{align}
+    U &= mgh\\
+    &= mg\cos(x)
+    \label{potential_energy_expression}
+\end{align}
+
+As the carriage's velocity is initially very close to zero, we can say that the carriage's kinetic energy at some position $x$ is given by $U(0)-U(x)$. Substituting (\ref{potential_energy_expression}):
+
+\begin{align}
+    \frac{1}{2}mv^2 &= U(0) - U(x)\\
+    &= mg\cos(0) - mg\cos(x)\\
+    &= (1-\cos(x))mg\\
+    \implies v &= \sqrt{(1-cos(x))g}
+\end{align}
+
+Not sure what text to write here, we're going to do some calculus now (yay!) :)
+
+\begin{align}
+    \dot{x} &= v \cdot \hat{x}\\
+    &= \sqrt{(1-cos(x))g} \cdot \cos \left( \arctan \left( \diff{y}{x} \right) \right)\\
+    &= \sqrt{(1-cos(x))g} \cdot \cos (\arctan (-\sin(x)))\\
+    &= \sqrt{(1-cos(x))g} \cdot \frac{1}{\sqrt{1+sin^2(x)}}\\
+    &= \sqrt{\frac{1-cos(x)}{1+sin^2(x)} \cdot g}\\
+\end{align}
+
+\subsection{Approach 2 - travelling coordinates}
+
+This problem can be solved using travelling coordinates. I know this for a fact and certainly not making it up as I go along.
+
+Define $\hat{e_n}$ and $\hat{e_t}$ to be the unit vectors normal and tangential to the carriage's motion respectively.
+
+\end{document}
